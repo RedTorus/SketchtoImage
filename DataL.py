@@ -8,54 +8,43 @@ import random
 import torchvision.transforms as transforms
 
 
-class SketchyData(Dataset):
-    def __init__(self, sketchy_dir, image_dir, transform=None):
-        self.sketchy_dir = sketchy_dir
-        self.image_dir = image_dir
+class SketchyDataset(Dataset):
+    def __init__(self, sketches_dir, images_dir, transform=None):
+        self.sketches_dir = sketches_dir
+        self.images_dir = images_dir
         self.transform = transform
+        self.pairs = self._load_pairs()
+        
+    def _load_pairs(self):
+        pairs = []
+        # Build a dictionary with key as base filename without extension and value as full path
+        image_dict = {os.path.splitext(file)[0]: os.path.join(dirpath, file)
+                      for dirpath, dirnames, filenames in os.walk(self.images_dir)
+                      for file in filenames if file.endswith('.jpg')}
+        
+        # Iterate over sketch files and match them with corresponding images
+        for dirpath, dirnames, filenames in os.walk(self.sketches_dir):
+            for file in filenames:
+                if file.endswith('.png'):
+                    base_name = re.sub(r'-\d+\.png$', '', file)  # Remove the sketch number and extension
+                    if base_name in image_dict:
+                        pairs.append((os.path.join(dirpath, file), image_dict[base_name]))
+        return pairs
 
-        self.sketchy_dict = {}
-        self.image_dict = {}
-
-        for subdir in os.listdir(sketchy_dir):
-            subdir_path = os.path.join(sketchy_dir, subdir)
-            if os.path.isdir(subdir_path):
-                self.sketchy_dict.update({re.search(r'_(\d{3,4})-\d\.png$', file).group(1): os.path.join(subdir, file)
-                                          for file in os.listdir(subdir_path) if
-                                          re.search(r'_(\d{3,4})-\d\.png$', file)})
-
-        for subdir in os.listdir(image_dir):
-            subdir_path = os.path.join(image_dir, subdir)
-            if os.path.isdir(subdir_path):
-                self.image_dict.update({re.search(r'_(\d{3,4})\.jpg$', file).group(1): os.path.join(subdir, file)
-                                        for file in os.listdir(subdir_path) if re.search(r'_(\d{3,4})\.jpg$', file)})
-
-        #self.sketchy_dict = {re.search(r'_(\d{3,4})-\d\.png$', file).group(1): file
-        #                     for file in os.listdir(sketchy_dir) if re.search(r'_(\d{3,4})-\d\.png$', file)}
-
-        #self.image_dict = {re.search(r'_(\d{3,4})\.jpg$', file).group(1): file
-        #                     for file in os.listdir(image_dir) if re.search(r'_(\d{3,4})\.jpg$', file)}
-
-        self.pairs=[ (self.sketchy_dict[key], self.image_dict[key]) for key in self.sketchy_dict if key in self.image_dict]
-
+    def __getitem__(self, index):
+        sketch_path, image_path = self.pairs[index]
+        sketch = Image.open(sketch_path).convert('RGB')
+        image = Image.open(image_path).convert('RGB')
+        
+        if self.transform:
+            sketch = self.transform(sketch)
+            image = self.transform(image)
+            
+        return sketch, image
 
     def __len__(self):
         return len(self.pairs)
 
-    def __getitem__(self, idx):
-
-        
-        sketch_path = os.path.join(self.sketchy_dir, self.pairs[idx][0])
-        image_path = os.path.join(self.image_dir, self.pairs[idx][1])
-
-        sketch = Image.open(sketch_path).convert('RGB')
-        image = Image.open(image_path).convert('RGB')
-
-        if self.transform:
-            sketch = self.transform(sketch)
-            image = self.transform(image)
-
-        return sketch, image
 
 
 class miniset(Dataset):
@@ -130,57 +119,56 @@ def resize_images_in_subdirs(input_base_dir, output_base_dir, size):
 
 def get_dataset():
     base_dir = os.path.dirname(os.path.realpath(__file__))
-    sketchpath = os.path.join(base_dir,'rendered_256x256/256x256/sketch/tx_000100000000/zebra')  # \\zebra'
-    imagepath = os.path.join(base_dir,'rendered_256x256/256x256/photo/tx_000100000000/zebra')  # \\zebra'
-    SketchySet = SketchyData(sketchy_dir=sketchpath, image_dir=imagepath)
+    sketchpath = os.path.join(base_dir,'rendered_256x256/256x256/sketch/tx_000100000000')  # \\zebra'
+    imagepath = os.path.join(base_dir,'rendered_256x256/256x256/photo/tx_000100000000')  # \\zebra'
+    SketchySet = SketchyDataset(sketches_dir=sketchpath, images_dir=imagepath)
 
     return SketchySet
 
 def get_miniset():
     base_dir = os.path.dirname(os.path.realpath(__file__))
-    png_dir = os.path.join(base_dir, 'rendered_256x256/256x256/sketch/resized/ant')
-    jpg_dir = os.path.join(base_dir, 'rendered_256x256/256x256/photo/resized/ant')
+    png_dir = os.path.join(base_dir, 'rendered_256x256/256x256/sketch/resized/airplane')
+    jpg_dir = os.path.join(base_dir, 'rendered_256x256/256x256/photo/resized/airplane')
     mini = miniset(png_dir, jpg_dir)
 
     return mini
 
 
+if __name__ == "__main__":
+    #sketchpath='C:\\Users\\kaust\\Downloads\\SketchyDataloader\\rendered_256x256\\256x256\\sketch\\tx_000100000000'#\\zebra'
+    #imagepath='C:\\Users\\kaust\\Downloads\\SketchyDataloader\\rendered_256x256\\256x256\\photo\\tx_000100000000'#\\zebra'
 
-#sketchpath='C:\\Users\\kaust\\Downloads\\SketchyDataloader\\rendered_256x256\\256x256\\sketch\\tx_000100000000'#\\zebra'
-#imagepath='C:\\Users\\kaust\\Downloads\\SketchyDataloader\\rendered_256x256\\256x256\\photo\\tx_000100000000'#\\zebra'
+    # resize_images_in_subdirs('rendered_256x256/256x256/sketch/tx_000100000000', 'rendered_256x256/256x256/sketch/resized', (128, 128))
+    # resize_images_in_subdirs('rendered_256x256/256x256/photo/tx_000100000000', 'rendered_256x256/256x256/photo/resized', (128, 128))
 
-#resize_images_in_subdirs('rendered_256x256/256x256/sketch/tx_000100000000', 'rendered_256x256/256x256/sketch/resized', (128, 128))
-#resize_images_in_subdirs('rendered_256x256/256x256/photo/tx_000100000000', 'rendered_256x256/256x256/photo/resized', (128, 128))
+    SketchySet = get_miniset() #SketchyData(sketchy_dir = sketchpath, image_dir =imagepath)
 
-SketchySet = get_miniset()#get_dataset()#SketchyData(sketchy_dir = sketchpath, image_dir =imagepath)
+    #print(len(SketchySet.sketchy_dict), len(SketchySet.image_dict), len(SketchySet.pairs))
 
-#print(len(SketchySet.sketchy_dict), len(SketchySet.image_dict), len(SketchySet.pairs))
+    #print(os.listdir(sketchpath))
+    #print(os.listdir(imagepath))
+    print("Dataset length: ", len(SketchySet))
+    dataloader=DataLoader(SketchySet)
+    #print(len(SketchySet))
+    i=random.randint(0,len(SketchySet)-1)
+    sk,im = SketchySet[i]
 
-#print(os.listdir(sketchpath))
-#print(os.listdir(imagepath))
-#print("Dataset length: ", len(SketchySet))
-dataloader=DataLoader(SketchySet)
-#print(len(SketchySet))
-i=random.randint(0,len(SketchySet)-1)
-sk,im = SketchySet[i]
 
-sk = sk.permute(1, 2, 0)
-im = im.permute(1, 2, 0)
 
-# Convert the tensors back to numpy arrays
-#sk = sk.numpy()
-#im = im.numpy()
+    # Convert the tensors back to numpy arrays
+    #sk = sk.numpy()
+    #im = im.numpy()
 
-sk=np.array(sk)#.transpose((1,2,0))
-im=np.array(im)#.transpose((1,2,0))
-print(im)
-fig, ax = plt.subplots(1,2,figsize=(10,5))
-ax[0].imshow(sk)
-ax[0].set_title('Sketch')
-ax[0].axis('off')
+    sk=np.array(sk).transpose((1,2,0))
+    im=np.array(im).transpose((1,2,0))
+    print(im)
+    fig, ax = plt.subplots(1,2,figsize=(10,5))
+    ax[0].imshow(sk)
+    ax[0].set_title('Sketch')
+    ax[0].axis('off')
 
-ax[1].imshow(im)
-ax[1].set_title('image')
-ax[1].axis('off')
+    ax[1].imshow(im)
+    ax[1].set_title('image')
+    ax[1].axis('off')
 
-plt.show()
+    plt.show()
