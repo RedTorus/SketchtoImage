@@ -36,11 +36,9 @@ class GuassianDiffusion:
         )
 
         self.clamp_x0 = lambda x: x.clamp(-1, 1)
+
         self.get_x0_from_xt_eps = lambda xt, eps, t, scalars: (
-            self.clamp_x0(
-                1
-                / unsqueeze3x(scalars.alpha_bar[t].sqrt())
-                * (xt - unsqueeze3x((1 - scalars.alpha_bar[t]).sqrt()) * eps)
+            self.clamp_x0(1 / unsqueeze3x(scalars.alpha_bar[t].sqrt()) * (xt - unsqueeze3x((1 - scalars.alpha_bar[t]).sqrt()) * eps)
             )
         )
         self.get_pred_mean_from_x0_xt = (
@@ -63,20 +61,12 @@ class GuassianDiffusion:
         all_scalars = {}
         if betas is None:
             all_scalars["beta"] = torch.from_numpy(
-                np.array(
-                    [
-                        min(
-                            1 - alpha_bar_scheduler(t + 1) / alpha_bar_scheduler(t),
-                            0.999,
-                        )
-                        for t in range(timesteps)
-                    ]
-                )
-            ).to(
-                device
-            )  # hardcoding beta_max to 0.999
+                np.array([min(1 - alpha_bar_scheduler(t + 1) / alpha_bar_scheduler(t), 0.999,)
+                        for t in range(timesteps)])).to(device)  # hardcoding beta_max to 0.999
+
         else:
             all_scalars["beta"] = betas
+
         all_scalars["beta_log"] = torch.log(all_scalars["beta"])
         all_scalars["alpha"] = 1 - all_scalars["beta"]
         all_scalars["alpha_bar"] = torch.cumprod(all_scalars["alpha"], dim=0)
@@ -194,8 +184,7 @@ def train_one_epoch(
     optimizer,
     logger,
     lrs,
-    args,
-):
+    args,):
     import pdb
     model.train()
     #pdb.set_trace()
@@ -211,8 +200,7 @@ def train_one_epoch(
         )
         #pdb.set_trace()
         t = torch.randint(diffusion.timesteps, (len(images),), dtype=torch.int64).to(
-            args.device
-        )
+            args.device)
         
         xt, eps = diffusion.sample_from_forward_process(images, t)
         pred_eps = model(xt, t, y=labels)
@@ -383,6 +371,7 @@ def main():
         print(
             "We are assuming that model input/ouput pixel range is [-1, 1]. Please adhere to it."
         )
+        
     diffusion = GuassianDiffusion(args.diffusion_steps, args.device)
     optimizer = torch.optim.AdamW(model.parameters(), lr=args.lr)
 
