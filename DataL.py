@@ -119,16 +119,16 @@ def resize_images_in_subdirs(input_base_dir, output_base_dir, size):
 
 def get_dataset():
     base_dir = os.path.dirname(os.path.realpath(__file__))
-    sketchpath = os.path.join(base_dir,'rendered_256x256/256x256/sketch/tx_000100000000')  # \\zebra'
-    imagepath = os.path.join(base_dir,'rendered_256x256/256x256/photo/tx_000100000000')  # \\zebra'
+    sketchpath = os.path.join(base_dir,'256x256/sketch/tx_000100000000')  # \\zebra'
+    imagepath = os.path.join(base_dir,'256x256/photo/tx_000100000000')  # \\zebra'
     SketchySet = SketchyDataset(sketches_dir=sketchpath, images_dir=imagepath)
 
     return SketchySet
 
 def get_miniset():
     base_dir = os.path.dirname(os.path.realpath(__file__))
-    png_dir = os.path.join(base_dir, 'rendered_256x256/256x256/sketch/resized/airplane')
-    jpg_dir = os.path.join(base_dir, 'rendered_256x256/256x256/photo/resized/airplane')
+    png_dir = os.path.join(base_dir, '256x256/sketch/resized/airplane')
+    jpg_dir = os.path.join(base_dir, '256x256/photo/resized/airplane')
     mini = miniset(png_dir, jpg_dir)
 
     return mini
@@ -138,8 +138,8 @@ if __name__ == "__main__":
     #sketchpath='C:\\Users\\kaust\\Downloads\\SketchyDataloader\\rendered_256x256\\256x256\\sketch\\tx_000100000000'#\\zebra'
     #imagepath='C:\\Users\\kaust\\Downloads\\SketchyDataloader\\rendered_256x256\\256x256\\photo\\tx_000100000000'#\\zebra'
 
-    # resize_images_in_subdirs('rendered_256x256/256x256/sketch/tx_000100000000', 'rendered_256x256/256x256/sketch/resized', (128, 128))
-    # resize_images_in_subdirs('rendered_256x256/256x256/photo/tx_000100000000', 'rendered_256x256/256x256/photo/resized', (128, 128))
+    resize_images_in_subdirs('256x256/sketch/tx_000100000000', '256x256/sketch/resized', (128, 128))
+    resize_images_in_subdirs('256x256/photo/tx_000100000000', '256x256/photo/resized', (128, 128))
 
     SketchySet = get_miniset() #SketchyData(sketchy_dir = sketchpath, image_dir =imagepath)
 
