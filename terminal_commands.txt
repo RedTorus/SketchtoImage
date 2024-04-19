@@ -1,0 +1,19 @@
+Connect to SSH: ssh biometrics@skynet88-drstrange.andrew.cmu.edu
+
+Openning a jupyter notebook session:
+Inside the server:
+jupyter notebook --no-browser --port=8888
+
+In a new terminal:
+ssh -L 8888:localhost:8888 biometrics@skynet88-drstrange.andrew.cmu.edu
+
+Creating TMUX sessions
+tmux new-session -s sketchy_t # our session name is sketchy_t
+
+Joining TMUX session
+tmux attach-session -t sketchy_t
+
+Creating new window inside tmux
+ctrl b then : then type new-window
+
+Switch between windows using ctrl b then n or ctrl b then (0-9)
