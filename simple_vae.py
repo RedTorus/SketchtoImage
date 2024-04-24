@@ -46,8 +46,8 @@ class myVAE(nn.Module):
         encoded_size = encoded.size()
         encoded_size = torch.prod(torch.tensor(encoded_size))
 
-        mu = nn.Linear(encoded_size, latent_dim)(encoded)
-        logvar = nn.Linear(encoded_size, latent_dim)(encoded)
+        mu = nn.Linear(encoded_size, self.latent_dim)(encoded)
+        logvar = nn.Linear(encoded_size, self.latent_dim)(encoded)
 
         z = self.reparametrize(mu, logvar)            
         x_hat = self.decoder(z)
