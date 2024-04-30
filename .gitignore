@@ -1,0 +1,17 @@
+256x256/
+.ipynb_checkpoints/
+images/
+vae.py
+vaetrain.py
+DataLold.py
+ddptest.py
+*.pth
+#!imagesv4_28-04_21:22/final_modelV4.pth
+#!imagesv5_29-04_02:06/final_modelV5.pth
+#!imagesv6_29-04_14:50/final_modelV6.pth
+*.png
+#!imagesv4_28-04_21:22/*.png
+#!imagesv5_29-04_02:06/*.png
+#!imagesv6_29-04_14:50/*.png
+*.ipynb
+__pycache__/

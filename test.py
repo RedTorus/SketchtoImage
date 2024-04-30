@@ -1,51 +1,49 @@
 from diffmain import *
-from DataL import SketchyDataset
+from DataL import *
 import glob
 import sys
 import os
 import re
-import torch    
+import torch
 import torch.nn as nn
 import torch.optim as optim
 import torch.nn.functional as F
 import matplotlib.pyplot as plt
 import numpy as np
 import pdb
-import random
+from tqdm import tqdm
+from torch.utils.data import DataLoader, random_split
+from torch.utils.data.distributed import DistributedSampler
+from sketch_condition_unet import SketchUNet, smallSketchUNet
+from simpleAE import myAE
+#from vae import VAE
+import multiprocessing
 
-photos_dir = '/Users/deniskaanalpay/Desktop/CMU/Term_2/18786_Intro_to_DL/SketchtoImage/rendered_256x256/256x256/photo/tx_000100000000'
-sketches_dir = '/Users/deniskaanalpay/Desktop/CMU/Term_2/18786_Intro_to_DL/SketchtoImage/rendered_256x256/256x256/sketch/tx_000100000000'
+base_dir = os.getcwd()
+#---------------Load VAE and AE models-------------------
+sketch_auto_encoder = torch.load('sketch_AE_v1_4classes.pth')
+photo_var_auto_encoder = torch.load('VAE_v1_4classes.pth')
+print("Models loaded successfully.")
+#----------------------Multi GPU setup-------------------
+ngpus = torch.cuda.device_count()
+batch_size = 160
 
-print(os.listdir(sketches_dir))
-SketchySet = SketchyDataset(sketches_dir, photos_dir)
+diffusion_steps = 500
+sampling_steps = 250
+DDIM = True
 
-print(os.listdir(sketches_dir))
-SketchySet = SketchyDataset(photos_dir, sketches_dir))
+batch_size = batch_size // ngpus
+torch.distributed.init_process_group("nccl")
+local_rank= torch.distributed.get_rank()
+torch.cuda.set_device(local_rank)
+device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
-#SketchySet = get_dataset(photos_dir, sketches_dir)
+unet= torch.load("final_modelV5.pth")
+unet=unet.to(device)
 
+model = unet.module.to("cpu")
+#print(model)
+torch.save(model, "final_modelV4_non_distributed.pth")
 
-train_loader = torch.utils.data.DataLoader(SketchySet, batch_size=256)
-
-
-i=random.randint(0,len(SketchySet)-1)
-sk,im = SketchySet[i]
-
-# Convert the tensors back to numpy arrays
-#sk = sk.numpy()
-#im = im.numpy()
-
-sk=np.array(sk)#.transpose((1,2,0))
-im=np.array(im)#.transpose((1,2,0))
-print(im)
-fig, ax = plt.subplots(1,2,figsize=(10,5))
-ax[0].imshow(sk)
-ax[0].set_title('Sketch')
-ax[0].axis('off')
-
-ax[1].imshow(im)
-ax[1].set_title('image')
-ax[1].axis('off')
-
-plt.show()
+model_check = torch.load("final_modelV4_non_distributed.pth", map_location='cpu')
 

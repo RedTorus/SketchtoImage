@@ -10,12 +10,13 @@ import pdb
 
 
 class OnlyImageDataset(Dataset):
+    #Class that only contains one 
     def __init__(self, root_dir, transform=None):
         self.root_dir = root_dir
         self.transform = transform
         self.image_paths = []
 
-        # Walk through the directory tree and collect paths of all .jpg images
+        # Walks through the directory tree and collect paths of all .jpg images
         for dirpath, _, filenames in os.walk(self.root_dir):
             for filename in filenames:
                 if filename.endswith('.jpg'):

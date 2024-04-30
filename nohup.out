@@ -1,0 +1,80 @@
+[I 2024-04-19 16:35:12.783 ServerApp] Package notebook took 0.0000s to import
+[I 2024-04-19 16:35:12.792 ServerApp] Package jupyter_lsp took 0.0084s to import
+[W 2024-04-19 16:35:12.792 ServerApp] A `_jupyter_server_extension_points` function was not found in jupyter_lsp. Instead, a `_jupyter_server_extension_paths` function was found and will be used for now. This function name will be deprecated in future releases of Jupyter Server.
+[I 2024-04-19 16:35:12.796 ServerApp] Package jupyter_server_terminals took 0.0036s to import
+[I 2024-04-19 16:35:12.796 ServerApp] Package jupyterlab took 0.0000s to import
+[I 2024-04-19 16:35:12.817 ServerApp] Package notebook_shim took 0.0000s to import
+[W 2024-04-19 16:35:12.817 ServerApp] A `_jupyter_server_extension_points` function was not found in notebook_shim. Instead, a `_jupyter_server_extension_paths` function was found and will be used for now. This function name will be deprecated in future releases of Jupyter Server.
+[I 2024-04-19 16:35:12.818 ServerApp] jupyter_lsp | extension was successfully linked.
+[I 2024-04-19 16:35:12.821 ServerApp] jupyter_server_terminals | extension was successfully linked.
+[I 2024-04-19 16:35:12.825 ServerApp] jupyterlab | extension was successfully linked.
+[I 2024-04-19 16:35:12.829 ServerApp] notebook | extension was successfully linked.
+[I 2024-04-19 16:35:13.010 ServerApp] notebook_shim | extension was successfully linked.
+[I 2024-04-19 16:35:13.027 ServerApp] notebook_shim | extension was successfully loaded.
+[I 2024-04-19 16:35:13.030 ServerApp] jupyter_lsp | extension was successfully loaded.
+[I 2024-04-19 16:35:13.030 ServerApp] jupyter_server_terminals | extension was successfully loaded.
+[I 2024-04-19 16:35:13.032 LabApp] JupyterLab extension loaded from /home/biometrics/conda3/envs/deepL/lib/python3.10/site-packages/jupyterlab
+[I 2024-04-19 16:35:13.032 LabApp] JupyterLab application directory is /home/biometrics/conda3/envs/deepL/share/jupyter/lab
+[I 2024-04-19 16:35:13.032 LabApp] Extension Manager is 'pypi'.
+[I 2024-04-19 16:35:13.035 ServerApp] jupyterlab | extension was successfully loaded.
+[I 2024-04-19 16:35:13.038 ServerApp] notebook | extension was successfully loaded.
+[I 2024-04-19 16:35:13.038 ServerApp] Serving notebooks from local directory: /home/biometrics/SketchtoImage
+[I 2024-04-19 16:35:13.038 ServerApp] Jupyter Server 2.10.0 is running at:
+[I 2024-04-19 16:35:13.038 ServerApp] http://localhost:8888/tree?token=d503d3f18b72a8ea74c0db65c495f7d28250f5d4f5b9dca9
+[I 2024-04-19 16:35:13.038 ServerApp]     http://127.0.0.1:8888/tree?token=d503d3f18b72a8ea74c0db65c495f7d28250f5d4f5b9dca9
+[I 2024-04-19 16:35:13.038 ServerApp] Use Control-C to stop this server and shut down all kernels (twice to skip confirmation).
+[C 2024-04-19 16:35:13.041 ServerApp] 
+    
+    To access the server, open this file in a browser:
+        file:///home/biometrics/.local/share/jupyter/runtime/jpserver-6185-open.html
+    Or copy and paste one of these URLs:
+        http://localhost:8888/tree?token=d503d3f18b72a8ea74c0db65c495f7d28250f5d4f5b9dca9
+        http://127.0.0.1:8888/tree?token=d503d3f18b72a8ea74c0db65c495f7d28250f5d4f5b9dca9
+[I 2024-04-19 16:35:13.063 ServerApp] Skipped non-installed server(s): bash-language-server, dockerfile-language-server-nodejs, javascript-typescript-langserver, jedi-language-server, julia-language-server, pyright, python-language-server, python-lsp-server, r-languageserver, sql-language-server, texlab, typescript-language-server, unified-language-server, vscode-css-languageserver-bin, vscode-html-languageserver-bin, vscode-json-languageserver-bin, yaml-language-server
+[I 2024-04-19 16:35:27.491 ServerApp] Package notebook took 0.0000s to import
+[I 2024-04-19 16:35:27.500 ServerApp] Package jupyter_lsp took 0.0085s to import
+[W 2024-04-19 16:35:27.500 ServerApp] A `_jupyter_server_extension_points` function was not found in jupyter_lsp. Instead, a `_jupyter_server_extension_paths` function was found and will be used for now. This function name will be deprecated in future releases of Jupyter Server.
+[I 2024-04-19 16:35:27.504 ServerApp] Package jupyter_server_terminals took 0.0037s to import
+[I 2024-04-19 16:35:27.504 ServerApp] Package jupyterlab took 0.0000s to import
+[I 2024-04-19 16:35:27.524 ServerApp] Package notebook_shim took 0.0000s to import
+[W 2024-04-19 16:35:27.525 ServerApp] A `_jupyter_server_extension_points` function was not found in notebook_shim. Instead, a `_jupyter_server_extension_paths` function was found and will be used for now. This function name will be deprecated in future releases of Jupyter Server.
+[I 2024-04-19 16:35:27.525 ServerApp] jupyter_lsp | extension was successfully linked.
+[I 2024-04-19 16:35:27.528 ServerApp] jupyter_server_terminals | extension was successfully linked.
+[I 2024-04-19 16:35:27.533 ServerApp] jupyterlab | extension was successfully linked.
+[I 2024-04-19 16:35:27.536 ServerApp] notebook | extension was successfully linked.
+[I 2024-04-19 16:35:27.716 ServerApp] notebook_shim | extension was successfully linked.
+[I 2024-04-19 16:35:27.737 ServerApp] notebook_shim | extension was successfully loaded.
+[I 2024-04-19 16:35:27.739 ServerApp] jupyter_lsp | extension was successfully loaded.
+[I 2024-04-19 16:35:27.740 ServerApp] jupyter_server_terminals | extension was successfully loaded.
+[I 2024-04-19 16:35:27.741 LabApp] JupyterLab extension loaded from /home/biometrics/conda3/envs/deepL/lib/python3.10/site-packages/jupyterlab
+[I 2024-04-19 16:35:27.742 LabApp] JupyterLab application directory is /home/biometrics/conda3/envs/deepL/share/jupyter/lab
+[I 2024-04-19 16:35:27.742 LabApp] Extension Manager is 'pypi'.
+[I 2024-04-19 16:35:27.745 ServerApp] jupyterlab | extension was successfully loaded.
+[I 2024-04-19 16:35:27.747 ServerApp] notebook | extension was successfully loaded.
+[I 2024-04-19 16:35:27.747 ServerApp] The port 8888 is already in use, trying another port.
+[I 2024-04-19 16:35:27.748 ServerApp] Serving notebooks from local directory: /home/biometrics/SketchtoImage
+[I 2024-04-19 16:35:27.748 ServerApp] Jupyter Server 2.10.0 is running at:
+[I 2024-04-19 16:35:27.748 ServerApp] http://localhost:8889/tree?token=a12d568b1667ca6f0df13bb6721230eb0f02b52ca9ff93a9
+[I 2024-04-19 16:35:27.748 ServerApp]     http://127.0.0.1:8889/tree?token=a12d568b1667ca6f0df13bb6721230eb0f02b52ca9ff93a9
+[I 2024-04-19 16:35:27.748 ServerApp] Use Control-C to stop this server and shut down all kernels (twice to skip confirmation).
+[C 2024-04-19 16:35:27.751 ServerApp] 
+    
+    To access the server, open this file in a browser:
+        file:///home/biometrics/.local/share/jupyter/runtime/jpserver-6298-open.html
+    Or copy and paste one of these URLs:
+        http://localhost:8889/tree?token=a12d568b1667ca6f0df13bb6721230eb0f02b52ca9ff93a9
+        http://127.0.0.1:8889/tree?token=a12d568b1667ca6f0df13bb6721230eb0f02b52ca9ff93a9
+[I 2024-04-19 16:35:27.772 ServerApp] Skipped non-installed server(s): bash-language-server, dockerfile-language-server-nodejs, javascript-typescript-langserver, jedi-language-server, julia-language-server, pyright, python-language-server, python-lsp-server, r-languageserver, sql-language-server, texlab, typescript-language-server, unified-language-server, vscode-css-languageserver-bin, vscode-html-languageserver-bin, vscode-json-languageserver-bin, yaml-language-server
+[I 2024-04-19 16:39:16.405 ServerApp] Kernel started: c8eb3f98-bba6-49e6-9bb4-7cd32cae6154
+[I 2024-04-19 16:39:16.897 ServerApp] Connecting to kernel c8eb3f98-bba6-49e6-9bb4-7cd32cae6154.
+[I 2024-04-19 16:39:54.455 ServerApp] Saving file at /train.ipynb
+[I 2024-04-19 16:39:56.388 ServerApp] Starting buffering for c8eb3f98-bba6-49e6-9bb4-7cd32cae6154:34656db8-4c3f-4a66-bba1-59edbe8a0ecd
+[I 2024-04-19 16:40:10.750 ServerApp] Connecting to kernel c8eb3f98-bba6-49e6-9bb4-7cd32cae6154.
+[I 2024-04-19 16:41:03.907 ServerApp] Creating new file in 
+[I 2024-04-19 16:43:01.936 ServerApp] Saving file at /train.py
+[I 2024-04-19 16:45:01.968 ServerApp] Saving file at /train.py
+[I 2024-04-19 16:46:09.559 ServerApp] Saving file at /train.py
+[I 2024-04-19 16:46:20.546 ServerApp] Starting buffering for c8eb3f98-bba6-49e6-9bb4-7cd32cae6154:d0741e7f-67df-4c59-924b-be29d9cf0fcf
+[I 2024-04-19 16:46:31.423 ServerApp] Interrupted...
+[IPKernelApp] WARNING | Parent appears to have exited, shutting down.
+[I 2024-04-24 15:49:38.287 JupyterNotebookApp] 302 GET /tree?token=[secret] (@127.0.0.1) 1.26ms
