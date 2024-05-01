@@ -6,13 +6,17 @@ You can download the sketchy dataset from google drive using this link: https://
 We created numerous pipelines, many illustrating our failed attempts and iterative progress.
 Important ones are described below.
 
+`pipelineV4.py`: A pipeline using reconstruction loss, scrapped for taking too long in training.
 
-`pipelineV6.py`: Our final pipeline, using class conditioning as well as sketch conditioning.
+The results of this pipeline can be seen in folders imagesV4_28-04_23:58 (results after training for 20 epochs) and imagesV4_29-04_19:20 (results after training for 100 epochs) (Note that the factor behind Los term 2 changed as well)
 
 `pipelineV5.py`: A baseline pipeline with only sketch conditioning.
 
-`pipelineV4.py`: A pipeline using reconstruction loss, scrapped for taking too long in training.
+The results can be seen in folder imagesV5_29-04_02:06 (trained for 1000 epochs)
 
+`pipelineV6.py`: Our final pipeline, using class conditioning as well as sketch conditioning.
+
+The result of this pipeline can be seen inside the folder imagesV6_30-04_03:32 (trained for 100 epochs)
 
 Below are some of our model implementations, and dataloaders. They include the unet we used, 
 as well as other components such as auto-encoders.
