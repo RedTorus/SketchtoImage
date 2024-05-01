@@ -1,7 +1,7 @@
 # SketchToImage
 ### A project for 18786: Introduction for Deep Learning @ CMU.
 
-
+You can download the sketchy dataset from google drive using this link: https://drive.google.com/file/d/0B7ISyeE8QtDdTjE1MG9Gcy1kSkE/view?usp=sharing&resourcekey=0-r6nB4crmdU-LK7H38xnOUw
 We created numerous pipelines, many illustrating our failed attempts and iterative progress.
 Important ones are described below.
 
