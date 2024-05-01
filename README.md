@@ -21,6 +21,6 @@ as well as other components such as auto-encoders.
 
 `datal.py`: Our dataloader class. Used on the sketchy dataset with the capability to provide class labeling.
 
-`augmentor.py` Our augmentor script, used in tandeom with the [PhotoSketch](https://github.com/mtli/PhotoSketch) code, to create realistic sketch-like edgemaps.
+`augmentor.py` Our augmentor script, used in tandem with the [PhotoSketch](https://github.com/mtli/PhotoSketch) code, to create realistic sketch-like edgemaps.
 
 `photoketch_dataloder.py` A script for generating and loading edge maps efficiently.
