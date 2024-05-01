@@ -32,4 +32,4 @@ as well as other components such as auto-encoders.
 
 `photoketch_dataloder.py` A script for generating and loading edge maps efficiently.
 
-TO see performance of our models V4, V5 or V6 with random noise conditioned on sketches run the ipynb file: test_diffusion_for_ V4 V5 or V6
+To see performance of our models V4, V5 or V6 with random noise conditioned on sketches run the ipynb file: test_diffusion_for_ V4 V5 or V6
