@@ -8,6 +8,7 @@ Important ones are described below.
 
 
 `pipelineV6.py`: Our final pipeline, using class conditioning as well as sketch conditioning.
+
 `pipelineV5.py`: A baseline pipeline with only sketch conditioning.
 
 `pipelineV4.py`: A pipeline using reconstruction loss, scrapped for taking too long in training.
