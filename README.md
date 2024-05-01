@@ -31,3 +31,5 @@ as well as other components such as auto-encoders.
 `augmentor.py` Our augmentor script, used in tandem with the [PhotoSketch](https://github.com/mtli/PhotoSketch) code, to create realistic sketch-like edgemaps.
 
 `photoketch_dataloder.py` A script for generating and loading edge maps efficiently.
+
+TO see performance of our models V4, V5 or V6 with random noise conditioned on sketches run the ipynb file: test_diffusion_for_ V4 V5 or V6
