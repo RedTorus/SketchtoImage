@@ -19,7 +19,8 @@ as well as other components such as auto-encoders.
 
 
 `simpleAE.py`: Our implementation for variational auto encoders and deterministic auto encoders.
-`sketch_condition_unet.py`: Our augmentation of [minimal_diffusion](https://github.com/VSehwag/minimal-diffusion) to support sketch and class conditioning.
+
+`sketch_condition_unet.py`: Our augmentation of the unet class from unet.py taken from [minimal_diffusion](https://github.com/VSehwag/minimal-diffusion) to support sketch and class conditioning.
 
 `datal.py`: Our dataloader class. Used on the sketchy dataset with the capability to provide class labeling.
 
